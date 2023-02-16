@@ -1,0 +1,53 @@
+
+let todoList = [];
+
+function addTodo(todoText) {
+  todoList.push({
+    todo: todoText,
+    done: false
+  });
+  console.log(todoList);
+}
+
+function changeTodo(position, todoText) {
+  todoList[position].todo = todoText;
+  console.log(todoList);
+}
+
+function deleteTodo(position) {
+  todoList.splice(position, 1);
+  console.log(todoList);
+}
+
+function markTodoDone(position) {
+  todoList[position].done = true;
+  console.log(todoList);
+}
+
+function toggleDone(position) {
+  let todo = todoList[position];
+  todo.done = !todo.done;
+  console.log(todoList);
+}
+
+function todoListHtml() {
+  let html = '<ul>';
+  todoList.forEach(function(todo, index) {
+    html += '<li>';
+    html += '<label>';
+    html += '<input type="checkbox" onclick="toggleDone(' + index + ')"';
+    if (todo.done) {
+      html += ' checked';
+    }
+    html += '>';
+    html += todo.todo;
+    html += '</label>';
+    html += '</li>';
+  });
+  html += '</ul>';
+  return html;
+}
+
+function render() {
+  document.getElementById('todolist').innerHTML = todoListHtml();
+}

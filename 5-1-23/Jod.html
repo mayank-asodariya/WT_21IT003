@@ -1,0 +1,69 @@
+<html>
+<body>
+
+<h1>21IT003</h1>
+<form>
+  <input type="text" id="todo">
+  <button type="button" onclick="addTodo()">Add</button>
+  <button type="button" onclick="ascending()">Assending</button>
+  <button type="button" onclick="restore()">Origal</button>
+</form>
+<ul id="todolist">
+</ul>
+
+<script>
+let todoList = [];
+function ascending() {
+  todoList.sort(function(a, b) {
+    return a.todo.localeCompare(b.todo);
+  });
+  render();
+}
+
+
+let originalList = [];
+function ascending() {
+  originalList = todoList.slice();
+  todoList.sort(function(a, b) {
+    return a.todo.localeCompare(b.todo);
+  });
+  render();
+}
+function restore() {
+  todoList = originalList.slice();
+  render();
+}
+
+function addTodo() {
+  let todoText = document.getElementById('todo').value;
+  todoList.push({
+    todo: todoText,
+    done: false
+  });
+  render();
+}
+
+function todoListHtml() {
+  let html = '';
+  todoList.forEach(function(todo, index) {
+    html += '<li>';
+    html += '<label>';
+    html += '<input type="checkbox" onclick="toggleDone(' + index + ')"';
+    if (todo.done) {
+      html += ' checked';
+    }
+    html += '>';
+    html += todo.todo;
+    html += '</label>';
+    html += '</li>';
+  });
+  return html;
+}
+
+function render() {
+  document.getElementById('todolist').innerHTML = todoListHtml();
+}
+</script>
+
+</body>
+</html>

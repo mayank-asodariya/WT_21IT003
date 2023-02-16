@@ -1,0 +1,18 @@
+function todoListHtml() {
+    let html = '<ul>';
+    todoList.forEach(function(todo, index) {
+      html += '<li>';
+      html += '<label>';
+      html += '<input type="checkbox" onclick="toggleDone(' + index + ')"';
+      if (todo.done) {
+        html += ' checked';
+      }
+      html += '>';
+      html += todo.todo;
+      html += '</label>';
+      html += '</li>';
+    });
+    html += '</ul>';
+    return html;
+  }
+  
