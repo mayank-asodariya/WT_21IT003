@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> <centre>Student Information</centre> </title>
+  <style>
+    form {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 5px;
+        margin: 0 auto;
+        width: 50%;
+    }
+    label {
+        font-size: 18px;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+    input[type="text"] {
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+    #errMsg {
+        color: red;
+    }
+    #idShowData {
+        margin: 20px auto;
+        width: 50%;
+    }
+    #studentTable {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    #studentTable th, #studentTable td {
+        border: 1px solid #ccc;
+        padding: 8px;
+    }
+
+
+  </style>
+</head>
+<body>
+  <h1>Student Information</h1>
+  <form>
+    <label for="idName">Name:</label>
+    <input type="text" id="idName" name="name">
+    <br>
+    <label for="idRollNumber">ID:</label>
+    <input type="text" id="idRollNumber" name="ID">
+    <br>
+    <button id="idBtn">Submit</button>
+  </form>
+  <div id="errMsg"></div>
+  <div id="idShowData">
+    <table id="studentTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>ID</th>
+         
+
+  <script>
+    class Person {
+        constructor(name, age) {
+        this.name = name;
+        this.age = age;
+        }
+        showDetails() {
+        console.log(`name is ${this.name} and age is ${this.age}`);
+        }
+        }
+        class Student extends Person {
+        constructor(name, age, ID, semester) {
+        super(name, age);
+        this.ID = ID;
+        this.semester = semester;
+        }
+    }
+
+const studentList = [];
+const displayAt = document.getElementById("idShowData");
+const ulele = document.createElement("u1");
+function createAndAddStudent(name, age, ID, semester) {
+    try {
+        studentList.push(new Student(name, age, ID, semester));
+
+        // create a new table row element
+        const row = document.createElement("tr");
+
+        // create new table data elements for name and id
+        const nameTd = document.createElement("td");
+        nameTd.textContent = name;
+        row.appendChild(nameTd);
+
+        const idTd = document.createElement("td");
+        idTd.textContent = ID;
+        row.appendChild(idTd);
+
+        // append the row to the table
+        const studentTable = document.getElementById("studentTable");
+        studentTable.appendChild(row);
+    }
+    catch (e) {
+        //console.log(e.message);
+        document.getElementById("errMsg").textContent = e.message;
+    }
+    document.getElementById("idRollNumber").value = "";
+    document.getElementById("idName").value = "";
+}
+
+document.getElementById("idBtn").addEventListener("click", function(event) {
+    event.preventDefault();
+    const name = document.getElementById("idName").value,
+    age = 29,
+    ID = document.getElementById("idRollNumber").value,
+    semester = 4;
+    createAndAddStudent(name, age, ID, semester);
+});
+console.log(studentList);
+
+</script>
+
+
+</body>
+</html>
