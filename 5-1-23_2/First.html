@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Objects and Functions</title>
+</head>
+<body>
+  <!-- HTML for mobile object -->
+  <div class="mobile">
+    <p>Mobile</p>
+    <button class="btn-mobile">Show Details</button>
+  </div>
+
+  <!-- HTML for bicycle object -->
+  <div class="bicycle">
+    <p>Bicycle</p>
+    <button class="btn-bicycle">Show Details</button>
+  </div>
+
+  <!-- HTML for car object -->
+  <div class="car">
+    <p>Car</p>
+    <button class="btn-car">Show Details</button>
+  </div>
+
+  <script>
+    // JavaScript for mobile object
+    const mobile = {
+      name: "Mobile",
+      type: "phone"
+    };
+
+    // JavaScript for bicycle object
+    const bicycle = {
+      name: "Bicycle",
+      type: "vehicle"
+    };
+
+    // JavaScript for car object
+    const car = {
+      name: "Car",
+      type: "vehicle"
+    };
+
+    // Function to show details of mobile object
+    const showMobileDetails = () => {
+  const details = `<p>Name: ${mobile.name}</p><p>Type: ${mobile.type}</p>`;
+  document.querySelector(".mobile-details").innerHTML = details;
+};
+<!-- HTML for mobile object -->
+<div class="mobile">
+  <p>Mobile</p>
+  <button class="btn-mobile">Show Details</button>
+  <div class="mobile-details"></div>
+</div>
+
+
+    // Function to show details of bicycle object
+    const showBicycleDetails = () => {
+      console.log(`Name: ${bicycle.name}`);
+      console.log(`Type: ${bicycle.type}`);
+    };
+
+    // Function to show details of car object
+    const showCarDetails = () => {
+      console.log(`Name: ${car.name}`);
+      console.log(`Type: ${car.type}`);
+    };
+
+    // Get buttons for each object
+    const btnMobile = document.querySelector(".btn-mobile");
+    const btnBicycle = document.querySelector(".btn-bicycle");
+    const btnCar = document.querySelector(".btn-car");
+
+    // Add click event listeners to buttons
+    btnMobile.addEventListener("click", showMobileDetails);
+    btnBicycle.addEventListener("click", showBicycleDetails);
+    btnCar.addEventListener("click", showCarDetails);
+
+
+    
+  </script>
+
+
+    
+</body>
+</html>
