@@ -5,54 +5,219 @@
     <script src="user-validation.js"></script>
   </head>
   <body>
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>User Validation Form</title>
-      </head>
-      <body>
-        <h1>User Validation Form</h1>
-        <form onsubmit="return validateForm()">
-          <label for="username">Username:</label>
-          <input type="text" id="username" name="username" required minlength="6"><br>
-    
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required minlength="8"><br>
-    
-          <input type="submit" value="Submit">
-        </form>
-    
-        <script>
-          function User(username, password) {
-            this.username = username;
-            this.password = password;
-          }
-    
-          User.prototype.validate = function() {
-            if (this.username.length < 6) {
-              return "Username must be at least 6 characters long.";
-            }
-            if (this.password.length < 8) {
-              return "Password must be at least 8 characters long.";
-            }
-            return true;
-          }
-    
-          function validateForm() {
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-            const user = new User(username, password);
-            const validationResult = user.validate();
-            if (validationResult === true) {
-              alert("User is valid!");
-              return true;
-            } else {
-              alert("User is invalid: " + validationResult);
-              return false;
-            }
-          }
-        </script>
-      </body>
-    </html>
-      </body>
-</html>
+    <style>
+      /* form container */
+#user-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+}
+
+/* form labels */
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* form inputs */
+input[type="text"], input[type="password"], input[type="email"], input[type="number"] {
+  width: 100x;
+  padding: 12px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="number"]:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+input[type="text"]::placeholder, input[type="password"]::placeholder, input[type="email"]::placeholder, input[type="number"]::placeholder {
+  color: #aaa;
+}
+
+/* form checkbox */
+.checkbox-group {
+  margin-bottom: 10px;
+}
+
+.checkbox-group label {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+/* submit button */
+button[type="submit"] {
+  display: block;
+  margin: 20px 0 0 auto;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #347a2a;
+}
+
+    </style>
+    <h1>User Validation Form</h1>
+    <form onsubmit="return validateForm()">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required minlength="6"><br>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required minlength="8"><br>
+
+      <label for="number">Number:</label>
+      <input type="number" id="number" name="number" required min="0"><br>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required><br>
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" required min="18"><br>
+
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" required>
+        <option value=""></option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select><br>
+
+      <label for="semester">Semester:</label>
+      <select id="semester" name="semester" required>
+        <option value=""></option>
+        <option value="1">1st</option>
+        <option value="2">2nd</option>
+        <option value="3">3rd</option>
+        <option value="4">4th</option>
+        <option value="5">5th</option>
+        <option value="6">6th</option>
+        <option value="7">7th</option>
+        <option value="8">8th</option>
+      </select><br>
+
+      <label>Favorite Sports Games:</label><br>
+      <input type="checkbox" id="checkbox1" name="game" value="football">
+      <label for="checkbox1">Football</label><br>
+      <input type="checkbox" id="checkbox2" name="game" value="basketball">
+      <label for="checkbox2">Basketball</label><br>
+      <input type="checkbox" id="checkbox3" name="game" value="soccer">
+      <label for="checkbox3">Soccer</label><br>
+      <input type="checkbox" id="checkbox4" name="game" value="baseball">
+      <label for="checkbox4">Baseball</label><br>
+      <input type="checkbox" id="checkbox5" name="game" value="tennis">
+      <label for="checkbox5">Tennis</label><br>
+
+      <input type="submit" value="Submit">
+    </form>
+
+    <script>
+      function User(username, password, number, email, age, gender, semester, games) {
+        this.username = username;
+        this.password = password;
+        this.number = number;
+        this.email = email;
+        this.age = age;
+        this.gender = gender;
+        this.semester = semester;
+        this.games = games;
+      }
+
+      User.prototype.validate = function() {
+  if (this.username.length < 6) {
+    alert("Username must be at least 6 characters long.");
+    return false;
+  }
+
+  if (this.password.length < 8) {
+    alert("Password must be at least 8 characters long.");
+    return false;
+  }
+
+  if (this.number <= 0) {
+    alert("Number must be a positive integer.");
+    return false;
+  }
+
+  if (!this.email.includes("@")) {
+    alert("Email must contain an '@' symbol.");
+    return false;
+  }
+
+  if (this.age < 18) {
+    alert("You must be 18 or older to use this form.");
+    return false;
+  }
+
+  if (this.gender === "") {
+    alert("Please select a gender.");
+    return false;
+  }
+
+  if (this.semester === "") {
+    alert("Please select a semester.");
+    return false;
+  }
+
+  var games = document.getElementsByName("game");
+  var checked = false;
+  for (var i = 0; i < games.length; i++) {
+    if (games[i].checked) {
+      checked = true;
+      break;
+    }
+  }
+  if (!checked) {
+    alert("Please select at least one favorite sport game.");
+    return false;
+  }
+
+  return true;
+}
+
+function validateForm() {
+  var username = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+  var number = parseInt(document.getElementById("number").value);
+  var email = document.getElementById("email").value;
+  var age = parseInt(document.getElementById("age").value);
+  var gender = document.getElementById("gender").value;
+  var semester = document.getElementById("semester").value;
+  var games = [];
+  var checkboxes = document.getElementsByName("game");
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      games.push(checkboxes[i].value);
+    }
+  }
+  var user = new User(username, password, number, email, age, gender, semester, games);
+  if (user.validate()) {
+    alert("Validation successful!");
+    return true;
+  } else {
+    return false;
+  }
+}
